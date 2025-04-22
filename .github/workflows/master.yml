@@ -32,4 +32,4 @@ jobs:
             sudo systemctl start nginx
             sudo systemctl enable nginx
             cd home
-            sudo mv * /var/www/html
+            sudo cp * /var/www/html
