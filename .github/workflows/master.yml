@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: [self-hosted, linux, x86]
+    runs-on: [self-hosted, ec2]
 
     steps:
       - name: Checkout the files
