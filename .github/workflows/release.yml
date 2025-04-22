@@ -1,8 +1,8 @@
-name: develop Workflow - Build and deploy to production
+name: Release Workflow - Build and deploy to production
 on:
   push: 
     branches:
-      - develop
+      - release
 
 jobs:
   deploy:
@@ -16,14 +16,14 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         env:
           SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-          REMOTE_HOST: ${{ secrets.HOST_DNS_DEVELOP }}
+          REMOTE_HOST: ${{ secrets.HOST_DNS_RELEASE }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
 
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST_DNS_DEVELOP }}
+          host: ${{ secrets.HOST_DNS_RELEASE }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
